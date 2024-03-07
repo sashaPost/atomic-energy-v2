@@ -1,0 +1,9 @@
+{% extends 'test_base.html' %}
+
+    {% block content %}
+    {% comment %} {{ post|safe }} {% endcomment %}
+        {% comment %} {% autoescape off %} {% endcomment %}
+            {{ post | safe | escape }}
+            {% comment %} {{ post }} {% endcomment %}
+        {% comment %} {% endautoescape %} {% endcomment %}
+    {% endblock %}

@@ -1,0 +1,297 @@
+"""
+docstring placeholder.
+"""
+from django.contrib.auth.models import User
+from django.http import Http404, HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework import (generics, 
+                            permissions, 
+                            renderers, 
+                            status, 
+                            viewsets)
+from rest_framework.authentication import (
+    SessionAuthentication, 
+    BasicAuthentication,
+)
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+from rest_framework.parsers import JSONParser
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.reverse import reverse
+from rest_framework.views import APIView
+from .models import *
+from .serializers import (
+    PostSerializer, 
+    UserSerializer,
+    UaPostHeadSerializer,
+    UaPostBodySerializer,
+    EnPostHeadSerializer,
+    EnPostBodySerializer,
+    PostAttachmentsSerializer,
+    CategorySerializer,
+)
+from .permissions import IsAuthenticatedReadOnly
+import pdb
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+
+
+@api_view(['GET'])
+@authentication_classes([
+    JWTAuthentication,
+    # SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+def api_root(request, format=None):    # OR format='json' 
+    """
+    # test
+    Docstring message is being rendered on the API route.
+    """
+    return Response({
+            'users': reverse('user-list', request=request, format=format),
+            'categories': reverse('category-list', request=request, format=format),
+            'posts': reverse('post-list', request=request, format=format),
+        })
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class UserList(generics.ListAPIView):
+    """
+    List of registered users.
+    """
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    # permission_classes = [IsAuthenticatedReadOnly]
+
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class CategoryList(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    # permission_classes = [IsAuthenticatedReadOnly]
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class CategoryDetail(generics.RetrieveAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    # permission_classes = [IsAuthenticatedReadOnly]
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class UaPostHeadDetail(generics.RetrieveAPIView):
+    queryset = UaPostHead.objects.all()
+    serializer_class = UaPostHeadSerializer
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class UaPostBodyDetail(generics.RetrieveAPIView):
+    queryset = UaPostBody.objects.all()
+    serializer_class = UaPostBodySerializer
+    lookup_url_kwarg = 'ua_post_body_pk'
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class UaPostBodyList(generics.ListAPIView):
+    queryset = UaPostBody.objects.all()
+    serializer_class = UaPostBodySerializer
+    
+    def get_queryset(self):
+        # pdb.set_trace()
+        post_pk = self.kwargs.get('post_pk')
+        queryset = UaPostBody.objects.filter(post=post_pk)
+        return queryset
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class EnPostHeadDetail(generics.RetrieveAPIView):
+    queryset = EnPostHead.objects.all()
+    serializer_class = EnPostHeadSerializer
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class EnPostBodyDetail(generics.RetrieveAPIView):
+    queryset = EnPostBody.objects.all()
+    serializer_class = EnPostBodySerializer
+    lookup_url_kwarg = 'en_post_body_pk'
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class EnPostBodyList(generics.ListAPIView):
+    queryset = EnPostBody.objects.all()
+    serializer_class = EnPostBodySerializer
+    
+    def get_queryset(self):
+        post_pk = self.kwargs.get('post_pk')
+        queryset = EnPostBody.objects.filter(post=post_pk)
+        return queryset
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class PostAttachmentsDetail(generics.RetrieveAPIView):
+    queryset = PostAttachments.objects.all()
+    serializer_class = PostAttachmentsSerializer
+    # lookup_url_kwarg = 'pk'
+    
+    # def 
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class PostList(generics.ListAPIView):
+    queryset = Post.objects.all().order_by('pub_date')
+    serializer_class = PostSerializer
+    # permission_classes = [IsAuthenticatedReadOnly]
+    
+@authentication_classes([
+    JWTAuthentication,
+    SessionAuthentication, 
+    # BasicAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class PostDetail(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    # permission_classes = [IsAuthenticatedReadOnly]
+
+# @authentication_classes([SessionAuthentication, BasicAuthentication])
+# @permission_classes([IsAuthenticated])
+# class PostImagesList(generics.RetrieveAPIView):    # generics.RetrieveUpdateDestroyAPIView
+#     queryset = PostImages.objects.all()
+#     serializer_class = PostImagesSerializer
+#     permission_classes = [
+#         permissions.IsAuthenticatedOrReadOnly,
+#         IsOwnerOrReadOnly,
+#     ]
+
+    # def get(self, request, *args, **kwargs):
+    #     post_images = self.get_object()
+    #     return Response(post_images.highlighted)
+
+# code below was replaced by 'PostsList' and 'PostDetail':
+# class PostsList(APIView):
+#     """
+#     List all posts or create a new one:
+#     """
+#     def get(self, request, format=None):
+#         posts = Post.objects.all()
+#         serializer = PostSerializer(posts, many=True)
+#         return Response(serializer.data)
+    
+#     def post(self, request, format=None):
+#         serializer = PostSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class PostDetail(APIView):
+#     """
+#     Retrieve, update or delete a post instance:
+#     """
+#     def get_object(self, pk):
+#         try:
+#             return Post.objects.get(pk=pk)
+#         except Post.DoesNotExist:
+#             raise Http404
+        
+#     def get(self, request, pk, format=None):
+#         post = self.get_object(pk)
+#         serializer = PostSerializer(post)
+#         return Response(serializer.data)
+    
+#     def put(self, request, pk, format=None):
+#         post = self.get_object(pk)
+#         serializer = PostSerializer(post, data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+#     def delete(self, request, pk, format=None):
+#         post = self.get_object(pk)
+#         post.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# no longer in use:
+# class PostViewSet(viewsets.ModelViewSet):
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+    
+# V PIZDU BLIADSKIE VIESETY:
+# @authentication_classes([SessionAuthentication, BasicAuthentication])
+# # @permission_classes([IsAuthenticatedReadOnly])
+# class CategoryList(viewsets.ReadOnlyModelViewSet):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer(queryset, many=True)
+#     permission_classes = [
+#         IsAuthenticatedReadOnly,
+#     ]
+# @authentication_classes([SessionAuthentication, BasicAuthentication])
+# @permission_classes([IsAuthenticatedReadOnly])
+# class PostsList(viewsets.ReadOnlyModelViewSet):    # generics.ListCreateAPIView
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+#     # def perform_create(self, serializer):
+#     #     serializer.save(added_by=self.request.user)
+# @authentication_classes([SessionAuthentication, BasicAuthentication])
+# # @permission_classes([IsAuthenticatedReadOnly])
+# class PostDetail(viewsets.ReadOnlyModelViewSet):    # generics.RetrieveUpdateDestroyAPIView
+#     queryset = Post.objects.all()
+#     serializer_class = PostSerializer
+#     permission_classes = [
+#         IsAuthenticatedReadOnly,
+#     ]

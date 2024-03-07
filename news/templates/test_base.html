@@ -1,0 +1,1383 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+
+    <!-- <base href="/"> -->
+
+    <title>
+
+        Новини | ДП «НАЕК «Енергоатом»
+
+    </title>
+
+    <meta name="description"
+          content="Міжнародна спільнота повинна позбутися залежності від росії та ввести санкцій проти Росатома"/>
+
+
+    <meta name="viewport"
+
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+
+    <link rel="icon" href="images/favicon.png"/>
+
+    <meta property="og:image" content="images/dist/preview.jpg"/>
+
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'news/app.min.css' %}">
+    <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Open+Sans:wght@300&family=Work+Sans:wght@100;200;300;400;500&display=swap"
+
+            rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VFX0Z25T2W"></script>
+
+    <script>
+
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+
+        gtag('config', 'G-VFX0Z25T2W');
+
+    </script>
+
+</head>
+
+<body>
+
+<header class="header">
+    <div class="d-none d-xxl-block">
+
+        <div class="cap-blue">
+
+            <span class="cap-blue-copy">#STANDWITHUKRAINE</span>
+
+            <div class="cap-blue-control">
+
+                <ul class="lang-cap">
+
+                    <li class="lang-cap-item">
+
+                        <a class="lang-cap-item-link" href="/o-0506231.html">UA</a>
+
+                    </li>
+
+                    <li class="lang-cap-item">
+
+                        <a class="lang-cap-item-link" href="./app-eng/eng-0506231.html">ENG</a>
+
+                    </li>
+
+                </ul>
+
+                <ul class="socials-cap">
+
+                    <li class="socials-cap-item">
+
+                        <a href="https://t.me/energoatom_ua" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg/Telegram.svg"/>
+
+                        </a>
+
+                    </li>
+
+                    <li class="socials-cap-item">
+
+                        <a href="https://www.facebook.com/energoatom.ua" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg//Facebook.svg"/>
+
+                        </a>
+
+                    </li>
+
+                    <li class="socials-cap-item">
+
+                        <a href="https://twitter.com/energoatom_ua" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg//Twitter.svg"/>
+
+                        </a>
+
+                    </li>
+
+                    <li class="socials-cap-item">
+
+                        <a href="https://www.youtube.com/energoatomcompany" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg//YouTube.svg"/>
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="container">
+
+
+            <div class="cap-white">
+
+                <div class="logo-white">
+
+                    <a class="logo-white-link" href="/index.html">
+
+                        <img src="images/dist/logo/logo.svg"/>
+
+                    </a>
+
+                </div>
+
+
+                <div class="nav-white-dropdown d-none d-xxl-flex">
+
+                    <ul class="nav-white-list">
+
+                        <li class="nav-white-list-item">
+
+                            <a class="btn btn-header" href="/news-links.html">Новини</a>
+
+                        </li>
+
+                        <li class="nav-white-list-item dropdown">
+
+                            <a class="btn btn-header" href="#">
+
+                                Про компанію
+
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                <li><a class="dropdown-item" href="/mission.html">Наша компанія</a></li>
+
+                                <li><a class="dropdown-item" href="/leadership.html">Керівництво</a></li>
+
+
+                                <li><a class="dropdown-item" href="/security-culture.html">Культура безпеки</a></li>
+
+                                <li><a class="dropdown-item" href="/prevention-of-corruption.html">Запобігання
+                                    корупції</a></li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="nav-white-list-item dropdown">
+
+                            <a class="btn btn-header" href="#">
+
+                                ВП АЕС
+
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                <li><a class="dropdown-item" href="/zaes.html">ВП Запорізька АЕС</a></li>
+
+                                <li><a class="dropdown-item" href="/raes.html">ВП Рівненська АЕС</a></li>
+
+                                <li><a class="dropdown-item" href="/paes.html">ВП Південноукраїнська АЕС</a></li>
+
+                                <li><a class="dropdown-item" href="/xaes.html">ВП Хмельницька АЕС</a></li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="nav-white-list-item dropdown">
+
+                            <a class="btn btn-header" href="#">
+
+                                Діяльність
+
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                <li><a class="dropdown-item" href="/production-indicators.html">Показники діяльності</a>
+                                </li>
+
+                                <li><a class="dropdown-item" href="/sales-electricity.html">Продаж електроенергії</a>
+                                </li>
+
+                                <li><a class="dropdown-item" href="/accounting.html">Публічна звітність</a></li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="nav-white-list-item dropdown">
+
+                            <a class="btn btn-header" href="#">
+
+                                Закупівлі
+
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                <li><a class="dropdown-item" href="/e-procurement.html">Електронні закупівлі</a></li>
+
+                                <li><a class="dropdown-item" href="/information-for-members.html">Інформація для
+                                    учасників</a></li>
+
+                                <li><a class="dropdown-item" href="/years-plane.html">Річні плани закупівель</a></li>
+
+
+                                <li><a class="dropdown-item" href="/e-procurement-reports.html">Звіти із закупівель</a>
+                                </li>
+
+                            </ul>
+
+                        </li>
+
+                        <li class="nav-white-list-item">
+
+                            <a class="btn btn-header" href="/table.html">Радіаційний стан</a>
+
+                        </li>
+
+                        <li class="nav-white-list-item">
+
+                            <a class="btn btn-header" href="/contacts.html">Контакти</a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="d-block d-xxl-none">
+
+        <div class="cap-blue-mobile">
+
+            <div class="cap-blue-mobile-control">
+
+                <ul class="socials-cap-mobile">
+
+                    <li class="socials-cap-mobile-item">
+
+                        <a href="https://t.me/energoatom_ua" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg/Telegram.svg"/>
+
+                        </a>
+
+                    </li>
+
+                    <li class="socials-cap-mobile-item">
+
+                        <a href="https://www.facebook.com/energoatom.ua" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg//Facebook.svg"/>
+
+                        </a>
+
+                    </li>
+
+                    <li class="socials-cap-mobile-item">
+
+                        <a href="https://twitter.com/energoatom_ua" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg//Twitter.svg"/>
+
+                        </a>
+
+                    </li>
+
+                    <li class="socials-cap-mobile-item">
+
+                        <a href="https://www.youtube.com/energoatomcompany" target="_blank">
+
+                            <img src="images/dist/sociale/social-svg//YouTube.svg"/>
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+                <ul class="lang-cap-mobile">
+
+                    <li class="lang-cap-mobile-item">
+
+                        <a class="lang-cap-mobile-item-link" href="/o-0506231.html">UA</a>
+
+                    </li>
+
+                    <li class="lang-cap-mobile-item">
+
+                        <a class="lang-cap-mobile-item-link" href="app-eng/eng-0506231.html">ENG</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="cap-white-mobile">
+
+            <div class="logo-white-mobile">
+
+                <a class="logo-white-mobile-link" href="/index.html">
+
+                    <img src="images/dist/logo/logo.svg"/>
+
+                </a>
+
+
+                <input class="burger-input" id="burger" type="checkbox"/>
+
+                <label class="burger" for="burger">
+
+                    <span class="burger-line"></span>
+
+                    <span class="burger-line"></span>
+
+                    <span class="burger-line"></span>
+
+                </label>
+
+
+                <nav class="nav-white-mobile">
+
+                    <ul class="nav-white-mobile-list">
+
+                        <li class="nav-white-mobile-list-item">
+
+                            <a class="btn btn-header" href="/news-links.html">Всі Новини</a>
+
+                        </li>
+
+                        <li class="nav-white-mobile-list-item">
+
+                            <a class="btn btn-header" href="/mission.html">Про Компанію</a>
+
+                        </li>
+
+                        <li class="nav-white-mobile-list-item">
+
+                            <a class="btn btn-header" href="/vp-mobile-version.html">ВП АЕС</a>
+
+                        </li>
+
+                        <li class="nav-white-mobile-list-item">
+
+                            <a class="btn btn-header" href="/production-indicators.html">Діяльність</a>
+
+                        </li>
+
+                        <li class="nav-white-mobile-list-item">
+
+                            <a class="btn btn-header" href="/e-procurement.html">Закупівлі</a>
+
+                        </li>
+
+                        <li class="nav-white-mobile-list-item">
+
+                            <a class="btn btn-header" href="/table.html">Радіаційний стан</a>
+
+                        </li>
+
+                        <li class="nav-white-mobile-list-item">
+
+                            <a class="btn btn-header" href="/contacts.html">Контакти</a>
+
+                        </li>
+
+                    </ul>
+
+                    <ul class="socials-cap-mobile">
+
+                        <li class="socials-cap-mobile-item px-2">
+
+                            <a href="https://t.me/energoatom_ua" target="_blank">
+
+                                <img src="images/dist/sociale/social-svg/Telegram.svg"/>
+
+                            </a>
+
+                        </li>
+
+                        <li class="socials-cap-mobile-item px-2">
+
+                            <a href="https://www.facebook.com/energoatom.ua" target="_blank">
+
+                                <img src="images/dist/sociale/social-svg//Facebook.svg"/>
+
+                            </a>
+
+                        </li>
+
+                        <li class="socials-cap-mobile-item px-2">
+
+                            <a href="https://twitter.com/energoatom_ua" target="_blank">
+
+                                <img src="images/dist/sociale/social-svg//Twitter.svg"/>
+
+                            </a>
+
+                        </li>
+
+                        <li class="socials-cap-mobile-item">
+
+                            <a href="https://www.youtube.com/energoatomcompany" target="_blank">
+
+                                <img src="images/dist/sociale/social-svg//YouTube.svg"/>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</header>
+</body>
+
+<div class="container">
+
+    <div class="row justify-content-md-center">
+
+        <div class="col-10">
+
+            <ul class="breadcrumbs d-none d-md-flex">
+
+                <li class="breadcrumbs-item"></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+
+<section class="single" id="#top">
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+    <ul class="sidebar-body">
+        <li class="sidebar-body-footer">
+          <a class="btn btn-all-news active" href="/news-links.html">Всі Новини</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="card">
+
+<div class="container">
+
+    <div class="card-bottom-wrap border-none">
+
+        <div class="section-title section-title-extra section-square">
+
+            <h2 class="section-copy">ВП АЕС
+
+            </h2>
+
+        </div>
+
+        <div class="d-none d-md-block">
+
+            <div class="row row-cols-4">
+
+                <div class="col">
+
+                    <div class="card-bottom">
+
+                        <a href="/zaes.html">
+
+                            <img src="images/dist/station/zaes-w.svg" class="w-100 our-deparmant" alt="..."/>
+
+                        </a>
+
+                        <div class="card-bottom-body">
+
+                            <a class="card-bottom-title" href="/zaes.html">
+
+                                Запорізька АЕС
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col">
+
+                    <div class="card-bottom">
+
+                        <a href="/raes.html">
+
+                            <img src="images/dist/station/raes-w.svg" class="w-100 our-deparmant" alt="..."/>
+
+                        </a>
+
+                        <div class="card-bottom-body">
+
+                            <a class="card-bottom-title" href="/raes.html">
+
+                                Рівненська АЕС
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col">
+
+                    <div class="card-bottom">
+
+                        <a href="/paes.html">
+
+                            <img src="images/dist/station/paes-w.svg" class="w-100 our-deparmant" alt="..."/>
+
+                        </a>
+
+                        <div class="card-bottom-body">
+
+                            <a class="card-bottom-title" href="/paes.html">
+
+                                Південноукраїнська АЕС
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col">
+
+                    <div class="card-bottom">
+
+                        <a href="/xaes.html">
+
+                            <img src="images/dist/station/xaes-w.svg" class="w-100 our-deparmant" alt="..."/>
+
+                        </a>
+
+                        <div class="card-bottom-body">
+
+                            <a class="card-bottom-title" href="/xaes.html">
+
+                                Хмельницька АЕС
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card-mobile d-block d-sm-none">
+
+            <div class="row justify-content-center">
+
+                <div class="col-11">
+
+                    <div class="sidebar-body">
+
+                        <a class="under-title" href="/zaes.html">Запорізька АЕС
+
+                        </a>
+
+                        <a href="/zaes.html">
+
+                            <img class="w-100 our-deparmant" src="images/dist/station/zaes-w.svg"/>
+
+                        </a>
+
+                        <div class="card-sidebar">
+
+                            <a class="card-sidebar-title" href="/zaes.html">
+
+                            </a>
+
+                            <div class="card-footer">
+
+                                <span class="card-footer-time"></span>
+
+                                <a class="card-footer-link" href="/zaes.html"></a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="section-title"></div>
+
+                    <div class="sidebar-body">
+
+                        <a class="under-title" href="/raes.html">Рівненська АЕС</a>
+
+                        <a href="/raes.html">
+
+                            <img class="w-100 our-deparmant" src="images/dist/station/raes-w.svg"/>
+
+                        </a>
+
+                        <div class="card-sidebar">
+
+                            <a class="card-sidebar-title" href="/raes.html">
+
+                            </a>
+
+                            <div class="card-footer">
+
+                                <span class="card-footer-time"></span>
+
+                                <a class="card-footer-link" href="/raes.html"></a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="section-title"></div>
+
+                    <div class="sidebar-body">
+
+                        <a class="under-title" href="/paes.html">Південноукраїнська АЕС</a>
+
+                        <a href="/paes.html">
+
+                            <img class="w-100 our-deparmant" src="images/dist/station/paes-w.svg"/>
+
+                        </a>
+
+                        <div class="card-sidebar">
+
+                            <a class="card-sidebar-title" href="/paes.html">
+
+                            </a>
+
+                            <div class="card-footer">
+
+                                <span class="card-footer-time"></span>
+
+                                <a class="card-footer-link" href="/paes.html"></a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="section-title"></div>
+
+                    <div class="sidebar-body">
+
+                        <a class="under-title" href="/xaes.html">Хмельницька АЕС</a>
+
+                        <a href="/xaes.html">
+
+                            <img class="w-100 our-deparmant" src="images/dist/station/xaes-w.svg"/>
+
+                        </a>
+
+                        <div class="card-sidebar">
+
+                            <a class="card-sidebar-title" href="/xaes.html">
+
+                            </a>
+
+                            <div class="card-footer">
+
+                                <span class="card-footer-time"></span>
+
+                                <a class="card-footer-link" href="/xaes.html"></a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<section class="card">
+<div class="container">
+    <div class="row d-none d-md-flex">
+
+        <div class="col">
+
+            <div class="section-title section-title-extra section-square">
+
+                <a class="section-copy" href="/nuclear-capabilities.html">Атомні можливості для розвитку країни
+
+                </a>
+
+            </div>
+
+            <div class="card-slider">
+
+                <div class="cart_item">
+
+                    <div class="cart_inner">
+
+                        <div class="cart_img">
+
+                            <a href="/nuclear-capabilities.html">
+
+                                <img src="images/dist/bg-photo/opportunities.jpg" alt="">
+
+                            </a>
+
+                        </div>
+
+                        <div class="slider-text">
+
+                            <div class="slider-text-item">
+
+                                <a class="slider-text-item-link" href="/nuclear-capabilities.html" target="_blank">
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="slider-title">
+
+                        <a class="slider-title-description" href="/nuclear-capabilities.html"></a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="section-title section-title-extra section-square">
+
+                <a class="section-copy" href="/international-cooperation.html">Міжнародна cпівпраця
+
+                </a>
+
+            </div>
+
+            <div class="card-slider">
+
+                <div class="cart_item">
+
+                    <div class="cart_inner">
+
+                        <div class="cart_img">
+
+                            <a href="/international-cooperation.html">
+
+                                <img src="images/dist/bg-photo/international1.jpg" alt="">
+
+                            </a>
+
+                        </div>
+
+                        <div class="slider-text">
+
+                            <div class="slider-text-item">
+
+                                <a class="slider-text-item-link" href="/international-cooperation.html"
+                                   target="_blank">
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="slider-title">
+
+                        <a class="slider-title-description" href="/international-cooperation.html"></a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row d-block d-md-none">
+
+        <div class="col">
+
+            <div class="section-title section-title-extra section-square">
+
+                <a class="section-copy" href="/nuclear-capabilities.html">Атомні можливості для розвитку країни
+
+                </a>
+
+            </div>
+
+            <div class="card-slider">
+
+                <div class="cart_item">
+
+                    <div class="cart_inner">
+
+                        <div class="cart_img">
+
+                            <a href="/nuclear-capabilities.html">
+
+                                <img src="images/dist/bg-photo/opportunities.jpg" alt="">
+
+                            </a>
+
+                        </div>
+
+                        <div class="slider-text">
+
+                            <div class="slider-text-item">
+
+                                <a class="slider-text-item-link" href="/nuclear-capabilities.html" target="_blank">
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="slider-title">
+
+                        <a class="slider-title-description" href="/nuclear-capabilities.html"></a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="section-title section-title-extra section-square">
+
+                <a class="section-copy" href="/international-cooperation.html">Міжнародна cпівпраця
+
+                </a>
+
+            </div>
+
+            <div class="card-slider">
+
+                <div class="cart_item">
+
+                    <div class="cart_inner">
+
+                        <div class="cart_img">
+
+                            <a href="/international-cooperation.html">
+
+                                <img src="images/dist/bg-photo/international1.jpg" alt="">
+
+                            </a>
+
+                        </div>
+
+                        <div class="slider-text">
+
+                            <div class="slider-text-item">
+
+                                <a class="slider-text-item-link" href="/international-cooperation.html"
+                                   target="_blank">
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="slider-title">
+
+                        <a class="slider-title-description" href="/international-cooperation.html"></a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<img class="d-flex d-md-none w-100" src="../images/dist/bg-photo/bg-mobile-under2.svg" alt=""/>
+
+<button class="to-top" id="toTop">
+
+<img src="images/dist/bg-vectors/arrow-up.svg"/>
+
+</button>
+
+<footer class="footer">
+
+<div class="footer" id="toFooter">
+
+    <div class="footer-extra">
+
+        <div class="footer-logo d-none d-md-block">
+
+            <div class="footer-logo-img d-none">
+
+                <img src="images/dist/logo/footer-logo.svg"/>
+
+            </div>
+
+        </div>
+
+        <div class="footer-description">
+
+            <a class="footer-description-link" href="#">#STANDWITHUKRAINE</a>
+
+            <img src="images/dist/bg-vectors/emblem.png" alt=""/>
+
+        </div>
+
+    </div>
+
+    <div class="flag"></div>
+
+</div>
+
+
+<div class="footer-page">
+
+    <div class="row row-cols-4 justify-content-center d-none d-lg-flex">
+
+        <div class="col">
+
+            <div class="footer-links">Про Компанію
+
+                <ul class="footer-links-title">
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/mission.html">Наша компанія</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/leadership.html">Керівництво</a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/structure.html">Структура компанії</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/security-culture.html">Культура безпеки</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/prevention-of-corruption.html">Запобігання
+                            корупції</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="footer-links">ВП АЕС
+
+                <ul class="footer-links-title">
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/zaes.html">ВП ЗАПОРІЗЬКА АЕС</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/raes.html">ВП РІВНЕНСЬКА АЕС</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/paes.html">ВП ПІВДЕННОУКРАЇНСЬКА АЕС</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/xaes.html">ВП ХМЕЛЬНИЦЬКА АЕС</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="footer-links">Діяльність
+
+                <ul class="footer-links-title">
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/production-indicators.html">Показники
+                            діяльності</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/sales-electricity.html">Продаж електроенергії</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/accounting.html">Публічна звітність</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="footer-links pb-4">Закупівлі
+
+                <ul class="footer-links-title">
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/e-procurement.html">Електронні закупівлі</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/information-for-members.html">Інформація для
+                            учасників</a>
+
+                    </li>
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/years-plane.html">Річні плани закупівель</a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a class="footer-links-title-page" href="/e-procurement-reports.html">Звіти із
+                            закупівель</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="footer-links-mobile">
+
+        <div class="modules">
+
+            <div class="modules-header">
+
+                <input class="modules-header-checkbox" type="checkbox" id="chck1">
+
+                <label class="modules-header-label" for="chck1">Про Компанію</label>
+
+
+                <a class="modules-header-content" href="/mission.html">Наша компанія</a>
+
+                <a class="modules-header-content" href="/leadership.html">Керівництво</a>
+
+                <a class="modules-header-content" href="/security-culture.html">Культура безпеки</a>
+
+                <a class="modules-header-content" href="/prevention-of-corruption.html">Запобігання корупції</a>
+
+
+            </div>
+
+        </div>
+
+        <div class="modules">
+
+            <div class="modules-header">
+
+                <input class="modules-header-checkbox" type="checkbox" id="chck2">
+
+                <label class="modules-header-label" for="chck2">ВП АЕС</label>
+
+
+                <a class="modules-header-content" href="/zaes.html">ВП Запорізька АЕС</a>
+
+                <a class="modules-header-content" href="/raes.html">ВП Рівненська АЕС</a>
+
+                <a class="modules-header-content" href="/paes.html">ВП Південноукраїнська АЕС</a>
+
+                <a class="modules-header-content" href="/xaes.html">ВП Хмельницька АЕС</a>
+
+
+            </div>
+
+        </div>
+
+        <div class="modules">
+
+            <div class="modules-header">
+
+                <input class="modules-header-checkbox" type="checkbox" id="chck3">
+
+                <label class="modules-header-label" for="chck3">Діяльність</label>
+
+
+                <a class="modules-header-content" href="/production-indicators.html">Показники діяльності</a>
+
+                <a class="modules-header-content" href="/sales-electricity.html">Продаж електроенергії</a>
+
+                <a class="modules-header-content" href="/accounting.html">Публічна звітність</a>
+
+
+            </div>
+
+        </div>
+
+        <div class="modules">
+
+            <div class="modules-header">
+
+                <input class="modules-header-checkbox" type="checkbox" id="chck4">
+
+                <label class="modules-header-label" for="chck4">Закупівлі</label>
+
+
+                <a class="modules-header-content" href="/e-procurement.html">Електронні закупівлі</a>
+
+                <a class="modules-header-content" href="/information-for-members.html">Інформація для учасників</a>
+
+                <a class="modules-header-content" href="/years-plane.html">Річні плани закупівель</a>
+
+
+                <a class="modules-header-content" href="/e-procurement-reports.html">Звіти із закупівель </a>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-logo-mobile d-block d-md-none">
+
+        <div class="footer-logo-mobile-img">
+
+            <img src="images/dist/logo/footer-logo.svg"/>
+
+        </div>
+
+        <ul class="socials-mobile px-3 pb-5">
+
+            <li class="socials-mobile-footer-item px-1">
+
+                <a href="https://twitter.com/energoatom_ua" target="_blank">
+
+                    <img src="images/dist/sociale/social-svg//Twitter.svg"/>
+
+                </a>
+
+            </li>
+
+            <li class="socials-mobile-footer-item px-1">
+
+                <a href="https://t.me/energoatom_ua" target="_blank">
+
+                    <img src="images/dist/sociale/social-svg/Telegram.svg"/>
+
+                </a>
+
+            </li>
+
+            <li class="socials-mobile-footer-item px-3">
+
+                <a href="https://www.facebook.com/energoatom.ua" target="_blank">
+
+                    <img src="images/dist/sociale/social-svg//Facebook.svg"/>
+
+                </a>
+
+            </li>
+
+            <li class="socials-mobile-footer-item">
+
+                <a href="https://www.youtube.com/energoatomcompany" target="_blank">
+
+                    <img src="images/dist/sociale/social-svg//YouTube.svg"/>
+
+                </a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>
+
+<div class="confidant d-none d-md-flex">
+
+    <p class="confidant-title">
+
+        Політика конфіденційності
+
+    </p>
+
+    <p class="confidant-title">
+
+        2023 Енергоатом. Всі права захищено.
+
+    </p>
+
+</div>
+
+<div class="confidant-mobile d-block d-sm-none">
+
+    <p class="confidant-mobile-title">
+
+        2023 Енергоатом. Всі права захищено.
+
+    </p>
+
+
+    <a class="confidant-mobile-title t-decor-under" href="#">
+
+        Політика конфіденційності
+
+    </a>
+
+</div>
+
+</footer>
+
+<script src="js/app.min.js"></script>
+
+</body>
+
+
+</html>

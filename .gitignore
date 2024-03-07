@@ -1,0 +1,55 @@
+# Ignore virtual environment
+3.10_venv/
+
+# Ignore environment file
+.env
+
+# Ignore logs
+logs/
+
+# Ignore Redis dump file
+dump.rdb
+
+# Ignore backup gitignore file
+.gitignore.back
+
+# Ignore Python bytecode caches
+__pycache__/
+news/__pycache__/
+scrappy_test/__pycache__/
+
+# Ignore database migration files
+news/migrations/
+scrappy_test/migrations/
+
+# Include scrappy_test/pages/ directory, but ignore its contents
+scrappy_test/
+# !scrappy_test/pages/
+# scrappy_test/pages/*
+
+media/
+# Include media/ directory, but ignore its contents
+# **/media/images/**
+# media/images/*.jpg
+# media/images/*.JPG
+# media/images/*.jpeg
+# media/images/*.png
+# media/images/*
+
+# Include static/ directory, but ignore its contents
+# **/static/**
+static/
+# static/*
+
+.history
+.to_do.txt
+nginx_conf/
+vassals/
+.vscode/
+nohup.out
+uwsgi_conf/
+server.crt
+server.key
+server_reqs.txt
+ssl/
+http/
