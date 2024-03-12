@@ -33,6 +33,15 @@ pymysql.install_as_MySQLdb()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# LOG_DIR = Path(BASE_DIR, 'logs')
+# LOG_FILE = LOG_DIR / 'django.log'
+
+# if not LOG_DIR.exists():
+#     LOG_DIR.mkdir(parents=True, exist_ok=True)
+    
+# if not LOG_FILE.exists():
+#     LOG_FILE.touch(exist_ok=True)
+#     os.chmod(LOG_FILE, 0o774)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -52,11 +61,12 @@ DEBUG = True
 # ALLOWED_HOSTS = ['*']
 # ALLOWED_HOSTS = ['185.69.155.129']
 ALLOWED_HOSTS = [
-    '80.91.164.102',
-    'testsite.energoatom.com.ua',
     '127.0.0.1',
     'localhost',
     # 'old.energoatom.com.ua',
+    'tested.energoatom.com.ua',
+    # '80.91.164.102',
+    # '192.18.1.2',
 ]
 
 CSRF_COOKIE_SECURE = True
@@ -77,10 +87,11 @@ SECURE_SSL_REDIRECT = False
 # SECURE_SSL_KEY = os.path.join(BASE_DIR, 'server.key')
 
 CORS_ALLOWED_ORIGINS = [
-    'https://testtwo.energoatom.com.ua',
-    'https://mainsite.energoatom.com.ua',
-    'https://energoatom.com.ua',
-    # 'http://localhost:3000',
+    'https://tested.energoatom.com.ua',
+    'https://new.energoatom.com.ua',
+    'https://front.energoatom.com.ua',
+    
+    'http://localhost:3000',
     'http://127.0.0.1:5000',
 
 ]
@@ -117,21 +128,18 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'taggit',
     'ckeditor',
-    # 'sslserver',
-    'news',
-    'procurement',
-    'scrappy_test',
-    # 'background_task',
     'django_extensions',
     'guardian',
-    # 'debug_toolbar',
     'django_pdb',
     'corsheaders',
     'django_filters',   # just installed; needs to be configured
+    
+    'news',
+    'scrappy_test',
+    'procurement',
 ]
 
 MIDDLEWARE = [
-    # 'news.https_middleware.ForceHTTPSMiddleware',    # forget about this; will be handled by Apache.
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -140,7 +148,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django_pdb.middleware.PdbMiddleware',
 ]
 

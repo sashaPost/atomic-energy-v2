@@ -7,29 +7,31 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 """
 
-# import os
-
-# from django.core.wsgi import get_wsgi_application
-
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'atomic_energy.settings')
-
-# application = get_wsgi_application()
-
 import os
 import sys
 from django.core.wsgi import get_wsgi_application
+from startup_tasks import check_log, check_media
+from pathlib import Path
 
-# sys.path.append(r'/home/alexback/atomic_energy/')
-# sys.path.append(r'/home/alexback/atomic_energy/atomic_energy/')
-path = '/home/alexback/atomic_energy/atomic_energy/'
-if path not in sys.path:
-	sys.path.append(path)
+
+
+# path = '/var/www/atomic-energy-v2/'
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+if BASE_DIR not in sys.path:
+	sys.path.append(BASE_DIR)
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'atomic_energy.settings')
+
+# if not os.path.exists('/var/www/atomic-energy-v2/logs'):  
+if not os.path.exists(os.path.join(BASE_DIR, 'logs')):
+    check_log(BASE_DIR)
+    
+if not os.path.exists(os.path.join(BASE_DIR, 'media')):
+    check_media(BASE_DIR)  
 
 os.environ['HTTPS'] = 'on'
 os.environ['wsgi.url_scheme'] = 'https'
 
 application = get_wsgi_application()
 
-# print(sys.path)

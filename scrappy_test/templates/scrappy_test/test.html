@@ -1,0 +1,20 @@
+
+{% extends 'base.html' %}
+
+    {% block content %}
+
+        <ol>
+        {% for key, value in contents.items %}
+            {% comment %} <li>{{ key }}: {{ value }}</li> {% endcomment %}
+            <li>{{ key }}: 
+                <ul>
+                {% for yek, val in value.items %}
+                    <li>{{ yek }}: {{ val }}</li>  
+                {% endfor %} 
+                </ul>
+            </li>
+
+        {% endfor %}
+        </ol>
+
+    {% endblock %}
