@@ -71,14 +71,14 @@ class UaPostBodySerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(UaPostBodySerializer, self).to_representation(instance)
 
-        if data['image'] in [None, '', 'https://testsite.energoatom.com.ua/media/False']:
+        if data['image'] in [None, '', 'https://tested.energoatom.com.ua/media/False']:
             data['image'] = False
         if data['video_url'] in ['false', 'False', 'No Video', None]:
             data['video_url'] = False
 
         # new code:
         if data['image']:
-            data['image'] = data['image'].replace('testsite', 'testtwo')
+            data['image'] = data['image'].replace('tested', 'new')
 
         return data
         
@@ -117,14 +117,13 @@ class EnPostBodySerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(EnPostBodySerializer, self).to_representation(instance)
 
-        if data['image'] in [None, '', 'https://testsite.energoatom.com.ua/media/False']:
+        if data['image'] in [None, '', 'https://tested.energoatom.com.ua/media/False']:
             data['image'] = False
         if data['video_url'] in ['false', 'False', 'No Video', None]:
             data['video_url'] = False
 
-        # new code:
         if data['image']:
-            data['image'] = data['image'].replace('testsite', 'testtwo')
+            data['image'] = data['image'].replace('tested', 'new')
 
         return data
 
@@ -199,11 +198,11 @@ class PostSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(PostSerializer, self).to_representation(instance)
 
-        if data['preview_image'] in [None, '', 'https://testsite.energoatom.com.ua/media/False']:
+        if data['preview_image'] in [None, '', 'https://tested.energoatom.com.ua/media/False']:
             data['preview_image'] = False
 
         if data['preview_image']:
-            data['preview_image'] = data['preview_image'].replace('testsite', 'testtwo')
+            data['preview_image'] = data['preview_image'].replace('tested', 'new')
 
         return data
         
