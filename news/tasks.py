@@ -61,7 +61,7 @@ def process_body_image(post_body):
             logger.info(f'UaPostBody ID {post_body.id} image was sent to media host!')
             return True
         else:
-            logger.error(f'Sending UaPostBody ID {post_body.id} image to media host failed:', response.status_code)
+            logger.error(f"Sending UaPostBody ID {post_body.id} image to media host failed: {response.status_code}")
             return False
 
 # being called if 'Ua/EnPostBody' image was updated:
