@@ -12,8 +12,11 @@ __pycache__/
 news/__pycache__/
 scrappy_test/__pycache__/
 
+# Include the specific migration
+# !news/migrations/0002_rename_title_eng_enposthead_title_en_and_more.py
+
 # Ignore database migration files
-news/migrations/
+# news/migrations/
 scrappy_test/migrations/
 procurement/migrations/
 
