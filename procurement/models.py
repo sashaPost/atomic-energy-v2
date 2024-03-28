@@ -65,7 +65,7 @@ class Item(models.Model):
     delivery_date = models.DateTimeField(null=True)
     
     def __str__(self):
-        self.id
+        return self.id
         
 class TenderPeriod(models.Model):
     procurement = models.OneToOneField(Procurement, on_delete=models.CASCADE, related_name='periods')    
@@ -73,7 +73,7 @@ class TenderPeriod(models.Model):
     start_date = models.DateTimeField(null=True)    # tenderPeriod->endDate
     
     def __str__(self):
-        self.id
+        return self.id
         
 class TenderStep(models.Model):
     procurement = models.OneToOneField(Procurement, on_delete=models.CASCADE, related_name='step')
