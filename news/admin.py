@@ -122,7 +122,7 @@ class EnPostHeadInline(admin.StackedInline):
     readonly_fields = ('id',)
     fk_name = 'post'
     show_change_link = True
-    prepopulated_fields = {"slug": ("title_eng",)}
+    prepopulated_fields = {"slug": ("title_en",)}
     
     def has_change_permission(self, request, obj=None):
         return True

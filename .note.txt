@@ -1,0 +1,3 @@
+28.03.2024; 15:29
+
+- create unit tests for migration code using 'django-test-migrations' package;

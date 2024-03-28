@@ -42,9 +42,11 @@ class Post(models.Model):
     seo_tags = TaggableManager(blank=True)  # missing on the Novelty page; hide it at serialization stage.
     post_visibility = models.BooleanField(default=True)    
     
-    preview_image = models.ImageField(blank=True, upload_to='images/')    # fix this to put images into newly created directory (by post's id + date)
-    image_alt = models.CharField(max_length=255, blank=True)
-    image_visibility = models.BooleanField(default=True)    # didn't migrate yet
+    # preview_image = models.ImageField(blank=True, upload_to='images/')    # fix this to put images into newly created directory (by post's id + date)
+    # image_alt = models.CharField(max_length=255, blank=True)
+    # image_visibility = models.BooleanField(default=True)    # didn't migrate yet
+    
+    home_page_visibility = models.BooleanField(default=True)
     
     pub_date = models.DateTimeField(auto_now_add=True)  # migration date for old posts
     indicated_date = models.DateTimeField(blank=True)
@@ -91,6 +93,9 @@ class UaPostHead(models.Model):
     slug = models.SlugField(max_length=255, null=True, blank=True) # will cause error if filled manually
     preview_text_ua = models.TextField(null=True, blank=True)
     
+    preview_image = models.ImageField(blank=True, upload_to='images/')    # fix this to put images into newly created directory (by post's id + date)
+    image_alt = models.CharField(max_length=255, blank=True)
+        
     def __str__(self):
         return f'\nTitle: {self.title_ua}\nSlug: {self.slug}\nID: {self.id}\nPost ID: {self.post_id}'
     
@@ -117,10 +122,17 @@ class UaPostBody(models.Model):
 
 class EnPostHead(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True, related_name='en_head')
-    title_eng = models.CharField(max_length=255, null=True, blank=True)
+    title_en = models.CharField(max_length=255, null=True, blank=True)
     slug = models.SlugField(max_length=255, null=True, blank=True)
-    preview_text_eng = models.CharField(max_length=255, null=True, blank=True)
+    preview_text_eng = models.TextField(null=True, blank=True)
+    
+    preview_image = models.ImageField(blank=True, upload_to='images/')    # fix this to put images into newly created directory (by post's id + date)
+    image_alt = models.CharField(max_length=255, blank=True)
+    
+    def __str__(self):
+        return f'\nTitle: {self.title_en}\nSlug: {self.slug}\nID: {self.id}\nPost ID: {self.post_id}'
 
+    
 class EnPostBody(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True, related_name='en_body')
     message_eng = RichTextField(null=True, blank=True)    # make 'blank=True'
