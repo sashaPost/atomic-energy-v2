@@ -95,8 +95,8 @@ class EnPostHeadSerializer(serializers.ModelSerializer):
         
     def to_representation(self, instance):
         data = super(EnPostHeadSerializer, self).to_representation(instance)
-        if data['preview_text_eng'] in ['', None]:
-            data['preview_text_eng'] = False
+        if data['preview_text_en'] in ['', None]:
+            data['preview_text_en'] = False
         return data
 
 class EnPostBodySerializer(serializers.ModelSerializer):
@@ -194,17 +194,17 @@ class PostSerializer(serializers.ModelSerializer):
         except AttributeError as e:
             return False
     
-    # new code:
-    def to_representation(self, instance):
-        data = super(PostSerializer, self).to_representation(instance)
+    # commented with latest update:
+    # def to_representation(self, instance):
+    #     data = super(PostSerializer, self).to_representation(instance)
 
-        if data['preview_image'] in [None, '', 'https://tested.energoatom.com.ua/media/False']:
-            data['preview_image'] = False
+    #     if data['preview_image'] in [None, '', 'https://tested.energoatom.com.ua/media/False']:
+    #         data['preview_image'] = False
 
-        if data['preview_image']:
-            data['preview_image'] = data['preview_image'].replace('tested', 'new')
+    #     if data['preview_image']:
+    #         data['preview_image'] = data['preview_image'].replace('tested', 'new')
 
-        return data
+    #     return data
         
 class CategorySerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='category-detail',

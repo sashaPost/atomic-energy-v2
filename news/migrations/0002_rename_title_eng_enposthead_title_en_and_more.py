@@ -57,4 +57,11 @@ class Migration(migrations.Migration):
             name='preview_text_eng',
             field=models.TextField(blank=True, null=True),
         ),
+        migrations.RenameField(
+            model_name='enposthead',
+            old_name='preview_text_eng',
+            new_name='preview_text_en',
+        ),
+        # migrations.RunPython(your_function_to_run, reverse_function)
+        migrations.RunPython(fill_updated_schema),
     ]

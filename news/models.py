@@ -124,7 +124,7 @@ class EnPostHead(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True, related_name='en_head')
     title_en = models.CharField(max_length=255, null=True, blank=True)
     slug = models.SlugField(max_length=255, null=True, blank=True)
-    preview_text_eng = models.TextField(null=True, blank=True)
+    preview_text_en = models.TextField(null=True, blank=True)
     
     preview_image = models.ImageField(blank=True, upload_to='images/')    # fix this to put images into newly created directory (by post's id + date)
     image_alt = models.CharField(max_length=255, blank=True)

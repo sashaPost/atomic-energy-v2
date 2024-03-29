@@ -23,8 +23,10 @@ def trigger_send_media_task(sender, instance, created, **kwargs):
         except Exception as e:
             logger.warning(f"Error: {e}")
   
-@receiver(pre_save, sender=UaPostBody)
-@receiver(pre_save, sender=EnPostBody)
+# @receiver(pre_save, sender=UaPostBody)
+# @receiver(pre_save, sender=EnPostBody)
+@receiver(post_save, sender=UaPostBody)
+@receiver(post_save, sender=EnPostBody)
 def trigger_send_body_images_tasks(sender, instance, **kwargs):
     logger.info(f"!!! 'trigger_send_body_images_tasks' was called !!!")
     logger.info(f"Signal triggered for {sender.__name__} ID: {instance.id}")

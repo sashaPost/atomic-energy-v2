@@ -144,7 +144,7 @@ def send_media(post_id):
                     if response.status_code == 200:
                         logger.info('EnPostBody image was sent to media host!')
                     else:
-                        logger.error('Sending image to media host failed:', response.status_code)
+                        logger.error(f"Sending image to media host failed: {response.status_code}")
         return True
         
     except Exception as e:
