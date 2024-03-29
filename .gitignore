@@ -13,7 +13,7 @@ news/__pycache__/
 scrappy_test/__pycache__/
 
 # Ignore database migration files
-news/migrations/
+# news/migrations/
 scrappy_test/migrations/
 procurement/migrations/
 

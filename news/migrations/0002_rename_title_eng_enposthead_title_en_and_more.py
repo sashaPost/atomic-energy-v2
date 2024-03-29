@@ -3,6 +3,65 @@
 from django.db import migrations, models
 
 
+
+# not sure if this one works properly:
+def reverse_fill_updated_schema(apps, schema_editor):
+    Post = apps.get_model('news', 'Post')
+    UaPostHead = apps.get_model('news', 'UaPostHead')
+    EnPostHead = apps.get_model('news', 'EnPostHead')
+    
+    default_image_alt = 'Image Temporarily Unavailable'
+
+    for post in Post.object.all():
+        ua_head = UaPostHead.objects.filter(post=post).first()
+        en_head = EnPostHead.objects.filter(post=post).first()
+        
+        if ua_head:
+            post.preview_image = ua_head.preview_image
+            
+        UaPostHead._meta.get_field('preview_image').delete()
+        UaPostHead._meta.get_field('image_alt').delete()
+        UaPostHead.save()
+        
+        EnPostHead._meta.get_field('preview_image').delete()
+        EnPostHead._meta.get_field('image_alt').delete()
+        EnPostHead.save()
+        
+        post.image_alt = default_image_alt
+        post._meta.get_field('home_page_visibility').delete()
+        post.save()
+
+def fill_updated_schema(apps, schema_editor):
+    Post = apps.get_model('news', 'Post')
+    UaPostHead = apps.get_model('news', 'UaPostHead')
+    EnPostHead = apps.get_model('news', 'EnPostHead')
+    
+    default_en_preview_image = 'images/default_en_preview_image.jpg'    # !!! don't forget to create it on the filesystem  
+    default_ua_preview_image_alt = 'Зображення тимчасово недоступне'
+    default_en_preview_image_alt = 'Image Temporarily Unavailable'
+    
+    for post in Post.objects.all():
+        if not hasattr(post, 'home_page_visibility'):
+            post.home_page_visibility = True
+            post.save()
+        
+        if post.preview_image:
+            try:
+                ua_head = UaPostHead.objects.get(post=post)    
+                ua_head.preview_image = post.preview_image
+                ua_head.image_alt = default_ua_preview_image_alt
+                ua_head.save()    
+            except UaPostHead.DoesNotExist:
+                pass
+            
+            try:
+                en_head = EnPostHead.objects.get(post=post)
+                en_head.preview_image = default_en_preview_image
+                en_head.image_alt = default_en_preview_image_alt
+                en_head.save()
+            except EnPostHead.DoesNotExist:
+                pass
+            
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -14,18 +73,6 @@ class Migration(migrations.Migration):
             model_name='enposthead',
             old_name='title_eng',
             new_name='title_en',
-        ),
-        migrations.RemoveField(
-            model_name='post',
-            name='image_alt',
-        ),
-        migrations.RemoveField(
-            model_name='post',
-            name='image_visibility',
-        ),
-        migrations.RemoveField(
-            model_name='post',
-            name='preview_image',
         ),
         migrations.AddField(
             model_name='enposthead',
@@ -62,6 +109,18 @@ class Migration(migrations.Migration):
             old_name='preview_text_eng',
             new_name='preview_text_en',
         ),
-        # migrations.RunPython(your_function_to_run, reverse_function)
-        migrations.RunPython(fill_updated_schema),
+        # !!! choose a right place for it:
+        migrations.RunPython(fill_updated_schema, reverse_fill_updated_schema),
+        migrations.RemoveField(
+            model_name='post',
+            name='image_alt',
+        ),
+        migrations.RemoveField(
+            model_name='post',
+            name='image_visibility',
+        ),
+        migrations.RemoveField(
+            model_name='post',
+            name='preview_image',
+        ),
     ]
