@@ -3,32 +3,6 @@
 from django.db import migrations, models
 
 
-
-def fill_updated_schema(apps, schema_editor):
-    Post = apps.get_model('news', 'Post')
-    UaPostHead = apps.get_model('news', 'UaPostHead')
-    EnPostHead = apps.get_model('news', 'EnPostHead')
-    
-    default_en_preview_image = 'images/default_en_preview_image.jpg'
-    ua_image_alt = 'Зображення тимчасово недоступне'
-    en_image_alt = 'Image Temporarily Unavailable'
-    
-    for post in Post.objects.all():
-        if not hasattr(post, 'home_page_visibility'):
-            post.home_page_visibility = True
-            post.save()
-        
-        if post.preview_image:
-            ua_head, _ = UaPostHead.objects.get_or_create(post=post)
-            ua_head.preview_image = post.preview_image
-            ua_head.image_alt = ua_image_alt
-            ua_head.save()
-            
-            en_head, _ = EnPostHead.objects.get_or_create(post=post)
-            en_head.preview_image = default_en_preview_image
-            en_head.image_alt = en_image_alt 
-            en_head.save()
-            
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -83,6 +57,4 @@ class Migration(migrations.Migration):
             name='preview_text_eng',
             field=models.TextField(blank=True, null=True),
         ),
-        # migrations.RunPython(your_function_to_run, reverse_function)
-        migrations.RunPython(fill_updated_schema),
     ]
