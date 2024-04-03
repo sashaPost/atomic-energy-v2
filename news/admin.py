@@ -14,8 +14,8 @@ from django.utils.html import format_html
 # admin.site.register(Category)
 class PostInlineFormSet(BaseInlineFormSet):
     def clean(self):
-        if not any(post_form.cleaned_data.get('title_ua') or post_form.cleaned_data.get('title_eng') for post_form in self.forms):
-            raise ValidationError('At least one Post should have a non-empty title_ua or title_eng.')
+        if not any(post_form.cleaned_data.get('title_ua') or post_form.cleaned_data.get('title_en') for post_form in self.forms):
+            raise ValidationError('At least one Post should have a non-empty title_ua or title_en.')
 
 class PostInline(admin.TabularInline):
     formset = PostInlineFormSet
@@ -39,7 +39,7 @@ class PostInline(admin.TabularInline):
     
     def display_title_en(self, obj):
         en_head = obj.en_head.first()
-        return en_head.title_eng if en_head else ''
+        return en_head.title_en if en_head else ''
     
     display_title_en.short_description = 'Title (EN)'  
     
@@ -165,15 +165,12 @@ class PostModelAdmin(admin.ModelAdmin):
         'meta_description',
         'seo_tags',
         'post_visibility',
-        'preview_image',
-        'image_alt',
-        'image_visibility',
         'indicated_date',
         'added_by',
         'category',
         
         # 'title_ua',
-        # 'title_eng',
+        # 'title_en',
         # 'slug',
         # 'category',
         # 'preview_text_ua',
@@ -214,7 +211,7 @@ class PostModelAdmin(admin.ModelAdmin):
     
     def title_en(self, obj):
         en_head = obj.en_head.first()
-        return en_head.title_eng if en_head else ''
+        return en_head.title_en if en_head else ''
     
     title_en.short_description = 'Title (EN)'
     

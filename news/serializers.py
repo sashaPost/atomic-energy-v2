@@ -49,8 +49,12 @@ class UaPostHeadSerializer(serializers.ModelSerializer):
         
     def to_representation(self, instance):
         data = super(UaPostHeadSerializer, self).to_representation(instance)
+        
         if data['preview_text_ua'] in ['', None, 0]:
             data['preview_text_ua'] = False
+            
+        if data['preview_image']:
+            data['preview_image'] = data['preview_image'].replace('tested', 'new') 
         return data
 
 class UaPostBodySerializer(serializers.ModelSerializer):
@@ -97,6 +101,10 @@ class EnPostHeadSerializer(serializers.ModelSerializer):
         data = super(EnPostHeadSerializer, self).to_representation(instance)
         if data['preview_text_en'] in ['', None]:
             data['preview_text_en'] = False
+            
+        if data['preview_image']:
+            data['preview_image'] = data['preview_image'].replace('tested', 'new') 
+
         return data
 
 class EnPostBodySerializer(serializers.ModelSerializer):
