@@ -20,19 +20,19 @@ def trigger_send_head_image_task(sender, instance, created, **kwargs):
     
     if created:
         logger.info(f"New {sender.__name__} created. ID: {instance.id}")
-        send_head_img.apply_async(args=(str(instance.id), 'UA' if model_name == 'uaposthead' else 'EN'), countdown=5)
+        send_head_img.apply_async(
+            args=(str(instance.id), 'UA' if model_name == 'uaposthead' \
+                else 'EN'), 
+            countdown=5
+        )
     else:
         logger.info(f"* 'else' block was triggered *")
         try:
-            send_head_img.apply_async(args=(str(instance.id), 'UA' if model_name == 'uaposthead' else 'EN'), countdown=5)
-            
-            # old_instance = sender.objects.get(pk=instance.id)
-            # old_image_filename = old_instance.preview_image.name
-            # logger.info(f"'old_image_filename': {old_image_filename}")
-            # logger.info(f"'upd_image_filename': {instance.preview_image.name}")
-            # if instance.preview_image.name != old_image_filename:
-            #     logger.info(f"* image file was changed *")
-            #     send_head_img.apply_async(args=(str(instance.id), 'UA' if model_name == 'uaposthead' else 'EN'), countdown=5)
+            send_head_img.apply_async(
+                args=(str(instance.id), 'UA' if model_name == 'uaposthead' \
+                    else 'EN'), 
+                countdown=5
+            )
         except sender.DoesNotExist:
             logger.error(f"{sender.__name__} ID: {instance.id} does not exist")
     
@@ -44,12 +44,18 @@ def trigger_send_body_image_task(sender, instance, created, **kwargs):
     model_name = sender._meta.model_name    # lovercase
     if created:
         logger.info(f"New {sender.__name__} created. ID: {instance.id}")
-        send_body_img.apply_async(args=(str(instance.id), 'UA' if model_name == 'uapostbody' else 'EN'), countdown=5)
+        send_body_img.apply_async(
+            args=(str(instance.id), 'UA' if model_name == 'uapostbody' \
+                else 'EN'), 
+            countdown=5
+        )
     else:
         logger.info(f"* 'else' block was triggered *")
         try:
-            send_body_img.apply_async(args=(str(instance.id), 'UA' if model_name == 'uapostbody' else 'EN'), countdown=5)
+            send_body_img.apply_async(
+                args=(str(instance.id), 'UA' if model_name == 'uapostbody' \
+                    else 'EN'), 
+                countdown=5
+            )
         except sender.DoesNotExist:
             logger.error(f"{sender.__name__} ID: {instance.id} does not exist")
-
-        
