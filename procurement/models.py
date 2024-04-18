@@ -13,14 +13,17 @@ class Unit(models.Model):
 class Procurement(models.Model):
     tender_id = models.CharField(max_length=255, verbose_name='Tender ID')    # tenderID 
     title = models.CharField(max_length=255, verbose_name='Title')    # title
+    # !!! add 'description' field - Комплект переносного верстатного устаткування та спеціального оснащення для точної обробки отворів з’єднувальних «жорстких» муфт роторів турбогенераторів і циркуляційних насосів
+    # might be useful for adding search feature
+    # !!! NO NEED TO DO THIS - SHOULD BE FETCHED FROM THE API AND STORED IN THE 'Item' MODEL
     product_code = models.CharField(max_length=50, verbose_name='Product Code')
-    purchase_code = models.CharField(max_length=50, verbose_name='Purchase Code')        
-    prozorro_id = models.CharField(max_length=50, unique=True, verbose_name='ProZorro ID')    # id
+    purchase_code = models.CharField(max_length=50, verbose_name='Purchase Code (CPV code)')        
+    prozorro_id = models.CharField(max_length=50, unique=True, verbose_name='ProZorro ID')    # example: 42150eeee5174bffb09484f02eecf385 - should be taken from Prozorro website manually
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, verbose_name='Unit')
     date = models.DateField(db_index=True, verbose_name='Tender Date')
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Added By')
     date_added = models.DateTimeField(auto_now_add=True)
-    visibility = models.BooleanField(default=False, verbose_name='Visibility')
+    visibility = models.BooleanField(default=True, verbose_name='Visibility')   # !!! make migrations to apply 'default=True'
     file = models.FileField(upload_to='files/', verbose_name='File Field')
     
     def __str__(self):
@@ -32,8 +35,8 @@ class ProcuringEntity(models.Model):
     identifier_id = models.CharField(max_length=8, null=True)    # identifier->id
     identifier_scheme = models.CharField(max_length=10, null=True)    # identifier->scheme
     identifier_name = models.CharField(max_length=255, null=True)    # name
-    country_name = models.CharField(max_length=32, null=True)    #address->countryName
-    postal_code = models.CharField(max_length=5, null=True)    # address->postalCode
+    country_name = models.CharField(max_length=32, null=True)    # address->countryName 
+    postal_code = models.CharField(max_length=5, null=True)    # !!! make migrations to remove field or leave it blank
     region = models.CharField(max_length=32, null=True)    # address->region  
     locality = models.CharField(max_length=32, null=True)    # address->locality
     address = models.CharField(max_length=255, null=True)    # address->streetAddress

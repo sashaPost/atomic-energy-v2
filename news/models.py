@@ -2,14 +2,11 @@ from django.db import models
 from taggit.managers import TaggableManager
 from ckeditor.fields import RichTextField
 from django.utils.text import slugify
-# import datetime
-# import os
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
 from scrappy_test.models import Novelty
 
-# from .tasks import *
 # import logging
 
 # logger = logging.getLogger(__name__)
@@ -25,8 +22,6 @@ from scrappy_test.models import Novelty
 
 # Create your models here.
 
-# Don't even remember, what is that.
-# Figure it out
 class Category(models.Model):
     # add slug field.
     ua_cat = models.CharField(max_length=33, null=True, blank=True)
@@ -41,10 +36,6 @@ class Post(models.Model):
     meta_description = models.TextField(null=True, blank=True) # 'meta_tag'
     seo_tags = TaggableManager(blank=True)  # missing on the Novelty page; hide it at serialization stage.
     post_visibility = models.BooleanField(default=True)    
-    
-    # preview_image = models.ImageField(blank=True, upload_to='images/')    # fix this to put images into newly created directory (by post's id + date)
-    # image_alt = models.CharField(max_length=255, blank=True)
-    # image_visibility = models.BooleanField(default=True)    # didn't migrate yet
     
     home_page_visibility = models.BooleanField(default=True)
     
@@ -65,27 +56,11 @@ class Post(models.Model):
     #     self._original_preview_image = self.preview_image
     
     def __str__(self):
-        # return f'{self.uaposthead_set.get().title_ua}'
-        # return f'\nTitle: {self.ua_head.get().title_ua}\nID: {self.id}'
-        # return f'\nMeta Title: {self.meta_title}\nID: {self.id}'
         return f'ID: {self.id}'
     
     class Meta:
         ordering = ['-indicated_date']
         get_latest_by = 'indicated_date'
-
-    # new code:
-    # def save(self, *args, **kwargs):
-    #     if self.pk is not None:
-    #         # This is an update, capture the original state
-    #         self._original_preview_image = Post.objects.get(pk=self.pk).preview_image
-    #     super(Post, self).save(*args, **kwargs)
-
-    # def trigger_send_preview_image(self):
-    #     if self._original_preview_image != self.preview_image:
-    #         logger.info(f"Post preview image is being updated. Post ID: {self.id}")
-    #         post_id = str(self.id)
-    #         send_preview_img.apply_async(args=(post_id,), countdown=3)
 
 class UaPostHead(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True, related_name='ua_head')

@@ -360,12 +360,18 @@ CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s - %(levelname)s - %(module)s - %(message)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+    },
     'handlers': {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            # 'filename': '/var/www/atomic_energy/atomic_energy/logs/django.log',   # server's log file
             'filename': 'logs/django.log',
+            'formatter': 'verbose',
         },
     },
     'root': {
