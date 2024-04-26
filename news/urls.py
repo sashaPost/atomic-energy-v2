@@ -32,6 +32,9 @@ urlpatterns += [
      path('posts/', 
           PostList.as_view(), 
           name='post-list'),
+     path('posts/filtered/', 
+          PostFilteredList.as_view(), 
+          name='post-list-filtered'),
      path('en-posts/',
           EnPostsList.as_view(),
           name='test'

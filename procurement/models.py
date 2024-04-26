@@ -1,30 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
 
 class Unit(models.Model):
     ua_name = models.CharField(max_length=255, unique=True)
     en_name = models.CharField(max_length=255, unique=True)
     
-    # def __str__(self):
-    #     return self.ua_name
+    def __str__(self):
+        return self.ua_name
     
 class Procurement(models.Model):
-    tender_id = models.CharField(max_length=255, verbose_name='Tender ID')    # tenderID 
+    tender_id = models.CharField(max_length=255, verbose_name='Tender ID\n(UA-2024-01-03-002960-a)')    # tenderID 
     title = models.CharField(max_length=255, verbose_name='Title')    # title
-    product_code = models.CharField(max_length=50, verbose_name='Product Code')
-    purchase_code = models.CharField(max_length=50, verbose_name='Purchase Code (CPV code)')        
-    prozorro_id = models.CharField(max_length=50, unique=True, verbose_name='ProZorro ID')    # example: 42150eeee5174bffb09484f02eecf385 - should be taken from Prozorro website manually
+    product_code = models.CharField(max_length=50, verbose_name='Product Code\n(ДК 021:2015)')
+    purchase_code = models.CharField(max_length=50, verbose_name='Purchase Code\n(CPV code: 42630000-1)')        
+    prozorro_id = models.CharField(max_length=50, unique=True, verbose_name='ProZorro ID\n(09558f35214e4cf58f015b3e4973e354)')    # example: 42150eeee5174bffb09484f02eecf385 - should be taken from Prozorro website manually
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, verbose_name='Unit', related_name='unit')
     date = models.DateField(db_index=True, verbose_name='Tender Date')
     added_by = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Added By', related_name='added_by')
     date_added = models.DateTimeField(auto_now_add=True)
-    visibility = models.BooleanField(default=True, verbose_name='Visibility')   # !!! make migrations to apply 'default=True'
+    visibility = models.BooleanField(default=True, verbose_name='Visibility')
     file = models.FileField(upload_to='files/', verbose_name='File Field')
     
-    # def __str__(self):
-    #     return self.prozorro_id
+    def __str__(self):
+        return f"Procurement #{self.id}: {self.title} ({self.tender_id}; {self.date})"
     
 class ProcuringEntity(models.Model):
     procurement = models.OneToOneField(Procurement, on_delete=models.CASCADE, related_name='procuring_entity')

@@ -38,7 +38,7 @@ def process_new_procurement_record(sender, instance, created, **kwargs):
         try:
             logger.info(f"Trying to fetch the procurement data from Prozorro API.\n{sender.__name__} ID: {instance.id}.")
             # fetch_data_from_prozorro.apply_async(args=(instance,), countdown=3)
-            fetch_data_from_prozorro.apply_async(args=(prozorro_id, instance.id), countdown=0)
+            fetch_data_from_prozorro.apply_async(args=(prozorro_id, instance.id), countdown=3)
             
         except requests.exceptions.RequestException as e:
             logger.warning(
@@ -48,7 +48,7 @@ def process_new_procurement_record(sender, instance, created, **kwargs):
     else:
         try:
             send_doc_file_to_media_host.apply_async(args=(instance.id,), countdown=3)
-            fetch_data_from_prozorro.apply_async(args=(prozorro_id, instance.id), countdown=0)
+            fetch_data_from_prozorro.apply_async(args=(prozorro_id, instance.id), countdown=3)
         except requests.exceptions.RequestException as e:
             logger.warning(
                 f"Error: {e}"

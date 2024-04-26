@@ -198,6 +198,21 @@ class PostList(generics.ListAPIView):
     # permission_classes = [IsAuthenticatedReadOnly]
     
 @authentication_classes([
+    SessionAuthentication,
+    JWTAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class PostFilteredList(generics.ListAPIView):
+    queryset = Post.objects.exclude(category__id__in=[
+        5,    # "РАЕС" 
+        6,    # "ПАЕС" 
+        7,    # "ХАЕС"
+        11,   # "Оголошення" 
+    ]).order_by('-indicated_date')  # Filter here
+    serializer_class = PostSerializer
+
+    
+@authentication_classes([
     # BasicAuthentication,
     SessionAuthentication, 
     JWTAuthentication,
