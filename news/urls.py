@@ -37,8 +37,11 @@ urlpatterns += [
           name='post-list-filtered'),
      path('en-posts/',
           EnPostsList.as_view(),
-          name='test'
+          name='en-posts'
           ),
+     path('en-posts/filtered/', 
+          EnPostFilteredList.as_view(), 
+          name='en-post-list-filtered'),
      path('posts/<int:pk>/', 
           PostDetail.as_view(), 
           name='post-detail'),

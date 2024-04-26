@@ -197,6 +197,7 @@ class PostList(generics.ListAPIView):
     serializer_class = PostSerializer
     # permission_classes = [IsAuthenticatedReadOnly]
     
+    
 @authentication_classes([
     SessionAuthentication,
     JWTAuthentication,
@@ -208,9 +209,9 @@ class PostFilteredList(generics.ListAPIView):
         6,    # "ПАЕС" 
         7,    # "ХАЕС"
         11,   # "Оголошення" 
-    ]).order_by('-indicated_date')  # Filter here
+    ]).order_by('-indicated_date')  
     serializer_class = PostSerializer
-
+   
     
 @authentication_classes([
     # BasicAuthentication,
@@ -231,10 +232,40 @@ class EnPostsList(generics.ListAPIView):
     serializer_class = EnPostsSerializer
     
     def get_queryset(self):
-        return Post.objects.filter(en_head__isnull=False, en_body__isnull=False).distinct()
+        return Post.objects.filter(
+            en_head__isnull=False, 
+            en_body__isnull=False,    
+        ).order_by('-indicated_date').distinct()
     
     def get_serializer_context(self):
         return {'request': self.request}
+    
+
+@authentication_classes([
+    SessionAuthentication,
+    JWTAuthentication,
+])
+@permission_classes([IsAuthenticatedReadOnly])
+class EnPostFilteredList(generics.ListAPIView):
+    serializer_class = EnPostsSerializer
+    
+    def get_queryset(self):
+        excluded_category_ids = [
+            5,    # "РАЕС" 
+            6,    # "ПАЕС" 
+            7,    # "ХАЕС"
+            11,   # "Оголошення"
+        ]  
+        return Post.objects.filter(
+            en_head__isnull=False, 
+            en_body__isnull=False,    
+        ).exclude(
+            category__id__in=excluded_category_ids,    
+        ).order_by('-indicated_date').distinct()  
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+    
 
 @authentication_classes([
     SessionAuthentication, 
