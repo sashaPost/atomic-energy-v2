@@ -11,6 +11,7 @@ from .models import (
     TenderPeriod,
     TenderStep,
 )
+# from .search_indexes import update_index
 import logging
 
 
@@ -18,6 +19,13 @@ import logging
 load_dotenv('.env')
 
 logger = logging.getLogger(__name__)
+
+
+@shared_task
+def update_procurement_index():
+    logger.info(f"* 'update_procurement_index' was triggered *")
+    update_index()
+    
 
 @shared_task
 def send_doc_file_to_media_host(instance_id):
@@ -54,8 +62,12 @@ def send_doc_file_to_media_host(instance_id):
     try:
         response = requests.post(full_url, files=files, headers=headers)
         logger.info(response)       
-        logger.info(f"File was successfully sent!") 
-        return response.status_code
+        if response.status_code == 200:
+            logger.info(f"File was successfully sent!") 
+            return response.status_code
+        else:
+            logger.info(f"File wasn't sent. Status Code: {response.status_code}")
+            return False
     except Exception as e:
         logger.warning(f"Something went wrong processing \
             'send_doc_file_to_media_host'")

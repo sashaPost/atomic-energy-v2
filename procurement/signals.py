@@ -1,14 +1,26 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 import requests
 from .models import Procurement
-from .tasks import send_doc_file_to_media_host, fetch_data_from_prozorro
-
+# from .search_indexes import update_index
+from .tasks import (
+    send_doc_file_to_media_host, 
+    fetch_data_from_prozorro,
+    # update_procurement_index,
+)
 import logging
 
 
-
 logger = logging.getLogger(__name__)
+
+
+#
+# @receiver(post_save, sender=Procurement)
+# @receiver(post_delete, sender=Procurement)
+# def update_index_on_procurement_change(sender, instance, **kwargs):
+#     logger.info(f"* 'update_index_on_procurement_change' signal was sent *")
+#     update_procurement_index()
+
 
 @receiver(post_save, sender=Procurement)
 # def trigger_send_file(sender, instance, created, **kwargs):

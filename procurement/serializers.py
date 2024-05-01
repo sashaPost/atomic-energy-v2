@@ -87,10 +87,4 @@ class ProcurementSerializer(serializers.ModelSerializer):
         if data['file']:
             data['file'] = data['file'].replace('tested', 'new')
         
-        # logger.info(f"Procurement: {str(instance)}")
-        # logger.info(f"Item: {str(instance.item)}")
-        # logger.info(f"Tender Period: {str(instance.period)}")
-        # logger.info(f"Tender Step: {str(instance.step)}")
-        # logger.info(f"Raw Data: {data}")
-        
         return data
