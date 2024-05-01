@@ -363,7 +363,7 @@ LOGGING = {
     'formatters': {
         'verbose': {
             'format': '%(asctime)s - %(levelname)s - %(module)s - %(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S'
+            'datefmt': '%Y-%m-%d %H:%M:%S',
         },
     },
     'handlers': {
