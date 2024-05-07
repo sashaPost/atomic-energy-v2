@@ -186,6 +186,7 @@ class PostAttachmentsDetail(generics.RetrieveAPIView):
     serializer_class = PostAttachmentsSerializer
     # lookup_url_kwarg = 'pk'
         
+        
 @authentication_classes([
     # BasicAuthentication,
     SessionAuthentication, 
@@ -193,9 +194,10 @@ class PostAttachmentsDetail(generics.RetrieveAPIView):
 ])
 @permission_classes([IsAuthenticatedReadOnly])
 class PostList(generics.ListAPIView):
-    queryset = Post.objects.all().order_by('-indicated_date')
+    # queryset = Post.objects.all().order_by('-indicated_date')
+    queryset = Post.objects.filter(post_visibility=True)\
+        .order_by('-indicated_date')
     serializer_class = PostSerializer
-    # permission_classes = [IsAuthenticatedReadOnly]
     
     
 @authentication_classes([
@@ -204,7 +206,9 @@ class PostList(generics.ListAPIView):
 ])
 @permission_classes([IsAuthenticatedReadOnly])
 class PostFilteredList(generics.ListAPIView):
-    queryset = Post.objects.exclude(category__id__in=[
+    queryset = Post.objects\
+        .filter(post_visibility=True, home_page_visibility=True)\
+        .exclude(category__id__in=[
         5,    # "РАЕС" 
         6,    # "ПАЕС" 
         7,    # "ХАЕС"
@@ -233,6 +237,7 @@ class EnPostsList(generics.ListAPIView):
     
     def get_queryset(self):
         return Post.objects.filter(
+            post_visibility=True,
             en_head__isnull=False, 
             en_body__isnull=False,    
         ).order_by('-indicated_date').distinct()
@@ -257,6 +262,8 @@ class EnPostFilteredList(generics.ListAPIView):
             11,   # "Оголошення"
         ]  
         return Post.objects.filter(
+            post_visibility=True,
+            home_page_visibility=True,
             en_head__isnull=False, 
             en_body__isnull=False,    
         ).exclude(
@@ -278,5 +285,10 @@ class CategoryEnPostsList(generics.ListAPIView):
     def get_queryset(self):
         print(self.kwargs)
         category_id = self.kwargs.get('pk')
-        queryset = Post.objects.filter(category=category_id, en_head__isnull=False, en_body__isnull=False).distinct()
+        queryset = Post.objects.filter(
+            category=category_id, 
+            post_visibility=True,
+            en_head__isnull=False, 
+            en_body__isnull=False,    
+        ).distinct()
         return queryset

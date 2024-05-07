@@ -9,8 +9,19 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.views import APIView
 from rest_framework.response import Response
-# from .search_indexes import search_procurements
+from django.db.models.functions import ExtractYear
+from rest_framework.pagination import PageNumberPagination
+import logging
 
+
+logger = logging.getLogger(__name__)
+
+
+class LargeResultsSetPagination(PageNumberPagination):
+    page_size = 6  # You can adjust the default page size here
+    # page_size_query_param = 'page_size'
+    # max_page_size = 6
+    
 
 @authentication_classes([
     SessionAuthentication, 
@@ -18,13 +29,22 @@ from rest_framework.response import Response
 ])
 @permission_classes([IsAuthenticatedReadOnly])
 class ProcurementsList(generics.ListAPIView):
-    queryset = Procurement.objects.filter(visibility=True)
+    queryset = Procurement.objects.filter(visibility=True)\
+        .annotate(year=ExtractYear('date'))
     serializer_class = ProcurementSerializer
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ['date__year', 'unit__id']  # Combine search fields
+    search_fields = ['date__year', 'unit__id', 'tender_id']  # Combine search fields
     ordering_fields = ['date', 'value__amount'] 
     ordering = '-date' 
-
+    pagination_class = LargeResultsSetPagination
+    
+    def get_paginated_response(self, data):
+        years_list = set(item['date'][:4] for item in data)
+        response = super().get_paginated_response(data)
+        response.data['years'] = list(years_list)
+        return response
+    
+    
 @authentication_classes([
     SessionAuthentication, 
     JWTAuthentication,

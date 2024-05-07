@@ -18,6 +18,8 @@ from django.urls import include, path
 urlpatterns = [
     path('procurements/', ProcurementsList.as_view(), name='procurements'),
     path('procurements/<int:pk>/', ProcurementDetail.as_view(), name='procurement-detail'),
+    
+    # might be deprecated - 'procurements/' covers it all:
     path('procurements/year', ProcurementListByYear.as_view()),    # + ?search=2022
     path('procurements/unit', ProcurementListByUnit.as_view()),    # + ?search=HNPP / ?search=ХАЕС
     path('procurements/search/<tender_id>', ProcurementSearch.as_view()),

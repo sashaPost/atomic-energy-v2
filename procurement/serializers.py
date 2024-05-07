@@ -10,12 +10,12 @@ class NullToFalseBaseSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(NullToFalseBaseSerializer, self).to_representation(instance)
         
-        logger.info(f"'data.items()': {data.items()}")
+        # logger.info(f"'data.items()': {data.items()}")
         
         for key, value in data.items():
             
-            logger.info(f"'key': {key}")
-            logger.info(f"'value': {value}")
+            # logger.info(f"'key': {key}")
+            # logger.info(f"'value': {value}")
             
             if isinstance(value, dict):
                 logger.info(f"!!! 'if isinstance(value, dict)' was triggered !!!")
@@ -88,3 +88,7 @@ class ProcurementSerializer(serializers.ModelSerializer):
             data['file'] = data['file'].replace('tested', 'new')
         
         return data
+    
+    # def get_years(self, instance):
+    #     years_list = set(item['date'] for item in self.context['request'].data.get('results', []))
+    #     return list(years_list)

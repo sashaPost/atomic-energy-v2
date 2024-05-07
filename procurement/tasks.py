@@ -21,10 +21,10 @@ load_dotenv('.env')
 logger = logging.getLogger(__name__)
 
 
-@shared_task
-def update_procurement_index():
-    logger.info(f"* 'update_procurement_index' was triggered *")
-    update_index()
+# @shared_task
+# def update_procurement_index():
+#     logger.info(f"* 'update_procurement_index' was triggered *")
+#     update_index()
     
 
 @shared_task
